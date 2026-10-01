@@ -1,0 +1,464 @@
+{
+  "survey_id": "ifh-be-teamwear-2026",
+  "version": "1.0-VL",
+  "country": "BE",
+  "languages": ["nl", "en"],
+  "default_language": "nl",
+  "title": {
+    "nl": "Enquête teamkledij in het Belgische voetbal 2026",
+    "en": "Belgian Football Teamwear Market Survey 2026"
+  },
+  "subtitle": {
+    "nl": "Inzicht in hoe Belgische voetbalclubs teamkledij aankopen, gebruiken en beheren.",
+    "en": "Understanding how Belgian football clubs purchase, use and manage teamwear."
+  },
+  "intro": {
+    "nl": [
+      "International Football Hub (IFH) voert een onafhankelijke studie uit naar hoe voetbalclubs en jeugdopleidingen in België hun teamkledij organiseren. We willen begrijpen wat clubs aankopen, hoe ze dat doen, wat het kost en waar het proces goed of minder goed loopt.",
+      "De enquête is bedoeld voor wie in je club het best op de hoogte is van de kledij: een bestuurslid, de gerechtigd correspondent, de sportief verantwoordelijke, de TVJO of de kledijverantwoordelijke. Invullen duurt ongeveer 6 minuten.",
+      "Het gaat uitsluitend over wedstrijdkledij, trainingskledij en teamuitrusting, niet over supportersartikelen of fanshop. Je antwoorden worden vertrouwelijk behandeld: we rapporteren enkel totaalresultaten en delen nooit gegevens van individuele clubs. Je contactgegevens op het einde zijn optioneel."
+    ],
+    "en": [
+      "International Football Hub (IFH) is carrying out an independent study of how football clubs and academies in Belgium organise their teamwear. We want to understand what clubs buy, how they buy it, what it costs and where the process works well or less well.",
+      "The survey is intended for the person in your club who knows most about teamwear: a board member, the club secretary, the sporting director, the youth coordinator or the kit manager. It takes about 6 minutes.",
+      "The survey covers match kits, training wear and team equipment only, not supporter or fan merchandise. Your answers are treated confidentially: we only report aggregated results and never share data about individual clubs. Contact details at the end are optional."
+    ]
+  },
+  "thank_you": {
+    "nl": "Bedankt voor je tijd en je bijdrage aan een beter inzicht in het Belgische voetbal.",
+    "en": "Thank you for your time and for contributing to a better understanding of Belgian football."
+  },
+  "products": [
+    { "code": "match_kit", "nl": "Wedstrijdtenue (shirt, broek)", "en": "Match kit (shirt, shorts)" },
+    { "code": "socks", "nl": "Wedstrijdkousen", "en": "Match socks" },
+    { "code": "gk_kit", "nl": "Keeperstenue", "en": "Goalkeeper kit" },
+    { "code": "training", "nl": "Trainingskledij (shirt, broek)", "en": "Training wear (shirt, shorts)" },
+    { "code": "tracksuit", "nl": "Trainingspak / wandelpak", "en": "Tracksuit / presentation wear" },
+    { "code": "winter_jacket", "nl": "Winter- / bankjas", "en": "Winter / bench jacket" },
+    { "code": "rain_jacket", "nl": "Regenjas", "en": "Rain jacket" },
+    { "code": "hoodie", "nl": "Hoodie / sweater", "en": "Hoodie / sweater" },
+    { "code": "polo", "nl": "Polo", "en": "Polo shirt" },
+    { "code": "bags", "nl": "Tassen (sporttas, rugzak)", "en": "Bags (kit bag, backpack)" },
+    { "code": "bibs", "nl": "Hesjes", "en": "Bibs" },
+    { "code": "balls", "nl": "Ballen", "en": "Footballs" },
+    { "code": "accessories", "nl": "Accessoires (mutsen, handschoenen, nekwarmers)", "en": "Accessories (beanies, gloves, neck warmers)" }
+  ],
+  "sections": [
+    {
+      "id": "s1",
+      "title": { "nl": "Over je club", "en": "About your club" },
+      "questions": [
+        {
+          "id": "Q00", "type": "short_text", "required": true, "prefill_from": "access_code.club_name",
+          "text": { "nl": "Naam van je club", "en": "Name of your club" }
+        },
+        {
+          "id": "Q01", "type": "single_select", "required": true, "other_field": "Q01_other",
+          "text": { "nl": "Op welk niveau speelt het eerste elftal van je club?", "en": "At what level does your club's first team play?" },
+          "options": [
+            { "code": "pro", "nl": "Profvoetbal (Pro League of Challenger Pro League)", "en": "Professional (Pro League or Challenger Pro League)" },
+            { "code": "national_amateur", "nl": "Nationale 1, Tweede Afdeling of Derde Afdeling", "en": "Nationale 1, Division 2 or Division 3" },
+            { "code": "provincial", "nl": "Provinciaal (1ste t/m 4de provinciale)", "en": "Provincial (1st to 4th provincial)" },
+            { "code": "youth_only", "nl": "Zuivere jeugdclub of jeugdacademie (geen eerste elftal)", "en": "Youth-only club or academy (no senior first team)" },
+            { "code": "other", "nl": "Andere", "en": "Other" }
+          ]
+        },
+        {
+          "id": "Q02", "type": "single_select", "required": true, "display": "dropdown",
+          "text": { "nl": "In welke provincie ligt je club?", "en": "In which province is your club based?" },
+          "options": [
+            { "code": "antwerp", "nl": "Antwerpen", "en": "Antwerp", "region": "flanders" },
+            { "code": "limburg", "nl": "Limburg", "en": "Limburg", "region": "flanders" },
+            { "code": "east_flanders", "nl": "Oost-Vlaanderen", "en": "East Flanders", "region": "flanders" },
+            { "code": "flemish_brabant", "nl": "Vlaams-Brabant", "en": "Flemish Brabant", "region": "flanders" },
+            { "code": "west_flanders", "nl": "West-Vlaanderen", "en": "West Flanders", "region": "flanders" },
+            { "code": "brussels", "nl": "Brussels Hoofdstedelijk Gewest", "en": "Brussels-Capital Region", "region": "brussels" }
+          ]
+        },
+        {
+          "id": "Q03", "type": "single_select", "required": true,
+          "text": { "nl": "Hoeveel aangesloten spelers telt je club ongeveer (alle ploegen samen)?", "en": "Approximately how many registered players does your club have (all teams)?" },
+          "options": [
+            { "code": "lt100", "nl": "Minder dan 100", "en": "Fewer than 100", "size_band": "small", "midpoint": 75 },
+            { "code": "100_249", "nl": "100–249", "en": "100–249", "size_band": "small", "midpoint": 175 },
+            { "code": "250_399", "nl": "250–399", "en": "250–399", "size_band": "medium", "midpoint": 325 },
+            { "code": "400_599", "nl": "400–599", "en": "400–599", "size_band": "medium", "midpoint": 500 },
+            { "code": "600plus", "nl": "600 of meer", "en": "600 or more", "size_band": "large", "midpoint": 700 }
+          ]
+        },
+        {
+          "id": "Q04", "type": "multi_select", "required": true,
+          "text": { "nl": "Welke ploegen of leeftijdscategorieën heeft je club?", "en": "Which teams or age groups does your club have?" },
+          "options": [
+            { "code": "senior_men", "nl": "Seniores heren", "en": "Senior men", "senior": true },
+            { "code": "senior_women", "nl": "Seniores dames", "en": "Senior women", "senior": true },
+            { "code": "veterans", "nl": "Veteranen", "en": "Veterans", "senior": true },
+            { "code": "u6_u9", "nl": "U6–U9", "en": "U6–U9" },
+            { "code": "u10_u13", "nl": "U10–U13", "en": "U10–U13" },
+            { "code": "u14_u17", "nl": "U14–U17", "en": "U14–U17" },
+            { "code": "u19_u21", "nl": "U19–U21 / beloften", "en": "U19–U21" },
+            { "code": "girls", "nl": "Meisjesploegen", "en": "Girls' youth teams" },
+            { "code": "g_football", "nl": "G-voetbal", "en": "G-football / adapted football" },
+            { "code": "futsal", "nl": "Zaalvoetbal / futsal", "en": "Futsal" }
+          ]
+        },
+        {
+          "id": "Q05", "type": "single_select", "required": true, "other_field": "Q05_other",
+          "text": { "nl": "Wat is jouw functie binnen de club?", "en": "What is your role in the club?" },
+          "options": [
+            { "code": "board", "nl": "Voorzitter of bestuurslid", "en": "Chair or board member" },
+            { "code": "secretary", "nl": "Gerechtigd correspondent (GC) of secretaris", "en": "Club secretary / official correspondent" },
+            { "code": "sporting_director", "nl": "Sportief verantwoordelijke of technisch directeur", "en": "Sporting or technical director" },
+            { "code": "youth_coordinator", "nl": "TVJO of jeugdcoördinator", "en": "Youth coordinator" },
+            { "code": "kit_manager", "nl": "Kledij- of materiaalverantwoordelijke", "en": "Kit or equipment manager" },
+            { "code": "coach", "nl": "Trainer", "en": "Coach" },
+            { "code": "other", "nl": "Andere", "en": "Other" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": { "nl": "Hoe je club teamkledij aankoopt", "en": "How your club buys teamwear" },
+      "questions": [
+        {
+          "id": "Q06", "type": "single_select", "required": true,
+          "text": { "nl": "Wie neemt de eindbeslissing over de kledingleverancier van de club?", "en": "Who makes the final decision on your club's teamwear supplier?" },
+          "options": [
+            { "code": "board", "nl": "Raad van bestuur of voorzitter", "en": "Board or chair" },
+            { "code": "sporting_director", "nl": "Sportieve cel of technisch directeur", "en": "Sporting or technical director" },
+            { "code": "youth_coordinator", "nl": "TVJO of jeugdcoördinator", "en": "Youth coordinator" },
+            { "code": "kit_manager", "nl": "Kledij- of materiaalverantwoordelijke", "en": "Kit or equipment manager" },
+            { "code": "secretary", "nl": "GC of secretaris", "en": "Club secretary" },
+            { "code": "committee", "nl": "Een werkgroep of commissie", "en": "A committee or working group" },
+            { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know" }
+          ]
+        },
+        {
+          "id": "Q07", "type": "matrix_single", "required": true,
+          "text": { "nl": "Wie betaalt hoofdzakelijk voor het volgende?", "en": "Who mainly pays for each of the following?" },
+          "rows": [
+            { "code": "match_kit", "nl": "Wedstrijdkledij", "en": "Match kit" },
+            { "code": "training", "nl": "Trainingskledij", "en": "Training wear" },
+            { "code": "winter_jacket", "nl": "Winter- / bankjas", "en": "Winter / bench jacket" },
+            { "code": "other_items", "nl": "Andere items (hoodies, tassen …)", "en": "Other items (hoodies, bags, etc.)" }
+          ],
+          "columns": [
+            { "code": "club", "nl": "Clubbudget (incl. sponsors)", "en": "Club budget (incl. sponsors)" },
+            { "code": "membership_fee", "nl": "Inbegrepen in het lidgeld (kledijpakket)", "en": "Included in membership fee (kit package)" },
+            { "code": "player_parent", "nl": "Speler/ouder betaalt apart", "en": "Player/parent pays separately" },
+            { "code": "na", "nl": "Niet van toepassing", "en": "Not applicable" }
+          ]
+        },
+        {
+          "id": "Q08", "type": "single_select", "required": true, "other_field": "Q08_other",
+          "text": { "nl": "Hoe wordt teamkledij in je club meestal besteld?", "en": "How is teamwear usually ordered in your club?" },
+          "options": [
+            { "code": "central", "nl": "De club bestelt alles centraal", "en": "The club orders everything centrally" },
+            { "code": "hybrid", "nl": "De club bestelt een basispakket centraal; spelers/ouders bestellen de rest zelf", "en": "The club orders core items centrally; players/parents order other items themselves" },
+            { "code": "individual", "nl": "Spelers/ouders bestellen individueel (via clubwebshop of partnersportwinkel)", "en": "Players/parents order individually (club webshop or partner sports shop)" },
+            { "code": "other", "nl": "Andere", "en": "Other" }
+          ]
+        },
+        {
+          "id": "Q09", "type": "single_select", "required": true,
+          "text": { "nl": "Hoe vaak plaatst je club bestellingen, bijbestellingen inbegrepen?", "en": "How often does your club place teamwear orders, including top-ups?" },
+          "options": [
+            { "code": "once", "nl": "Eén keer per seizoen", "en": "Once per season" },
+            { "code": "two_three", "nl": "2 à 3 keer per seizoen", "en": "2–3 times per season" },
+            { "code": "monthly", "nl": "Maandelijks of vaker", "en": "Monthly or more often" },
+            { "code": "ad_hoc", "nl": "Enkel wanneer nodig, geen vast ritme", "en": "Only when needed, no fixed rhythm" }
+          ]
+        },
+        {
+          "id": "Q10", "type": "multi_select", "required": true, "max_select": 2,
+          "text": { "nl": "Wanneer plaatst je club de grote bestelling voor het nieuwe seizoen?", "en": "When does your club place its main order for the new season?" },
+          "options": [
+            { "code": "jan_mar", "nl": "januari–maart", "en": "January–March" },
+            { "code": "apr_jun", "nl": "april–juni", "en": "April–June" },
+            { "code": "jul_aug", "nl": "juli–augustus", "en": "July–August" },
+            { "code": "sep_oct", "nl": "september–oktober", "en": "September–October" },
+            { "code": "nov_dec", "nl": "november–december", "en": "November–December" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "title": { "nl": "Producten en vraag", "en": "Products and demand" },
+      "questions": [
+        {
+          "id": "Q11", "type": "matrix_single", "required": true, "rows_from": "products",
+          "text": { "nl": "Hoe groot is de vraag naar elk product binnen je club?", "en": "How much demand is there in your club for each product?" },
+          "help": { "nl": "Hoog = de meeste ploegen · Gemiddeld = een deel van de ploegen · Laag = enkele spelers of stafleden", "en": "High = most teams · Medium = some teams · Low = a few players or staff only" },
+          "columns": [
+            { "code": "high", "nl": "Hoog", "en": "High" },
+            { "code": "medium", "nl": "Gemiddeld", "en": "Medium" },
+            { "code": "low", "nl": "Laag", "en": "Low" },
+            { "code": "not_used", "nl": "Niet gebruikt", "en": "Not used" },
+            { "code": "wanted", "nl": "Niet gebruikt, maar zouden we graag aanbieden", "en": "Not used, would like to offer" }
+          ]
+        },
+        {
+          "id": "Q12", "type": "multi_select", "required": true, "max_select": 3, "options_from": "products",
+          "extra_options": [
+            { "code": "none", "nl": "Geen — geen moeilijkheden", "en": "None — no difficulties", "exclusive": true },
+            { "code": "other", "nl": "Andere", "en": "Other" }
+          ],
+          "other_field": "Q12_other",
+          "text": { "nl": "Welke producten zijn het moeilijkst te verkrijgen in de juiste kwaliteit, maten of timing?", "en": "Which products are hardest to obtain in the right quality, sizes or timing?" }
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "title": { "nl": "Uitgaven, leveranciers en ervaring", "en": "Spend, suppliers and experience" },
+      "questions": [
+        {
+          "id": "Q13", "type": "single_select", "required": true,
+          "text": { "nl": "Hoeveel wordt er ongeveer per speler per seizoen aan teamkledij uitgegeven, bijdrage van club en ouders samen?", "en": "Roughly what is the total teamwear spend per player per season, club and parent contributions combined?" },
+          "options": [
+            { "code": "lt50", "nl": "Minder dan €50", "en": "Under €50", "midpoint": 35 },
+            { "code": "50_99", "nl": "€50–99", "en": "€50–99", "midpoint": 75 },
+            { "code": "100_149", "nl": "€100–149", "en": "€100–149", "midpoint": 125 },
+            { "code": "150_199", "nl": "€150–199", "en": "€150–199", "midpoint": 175 },
+            { "code": "200_299", "nl": "€200–299", "en": "€200–299", "midpoint": 250 },
+            { "code": "300plus", "nl": "€300 of meer", "en": "€300 or more", "midpoint": 350 },
+            { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know" }
+          ]
+        },
+        {
+          "id": "Q14", "type": "group", "required": false,
+          "text": { "nl": "Wat betaalt je club gemiddeld per item (incl. btw)?", "en": "What does your club typically pay per item (incl. VAT)?" },
+          "items": [
+            {
+              "id": "Q14a", "type": "single_select", "show_if": { "q": "Q11", "row": "match_kit", "not_in": ["not_used", "wanted"] },
+              "text": { "nl": "Volledig wedstrijdtenue (shirt, broek, kousen)", "en": "Full match kit (shirt, shorts, socks)" },
+              "options": [
+                { "code": "lt30", "nl": "< €30", "en": "< €30" }, { "code": "30_44", "nl": "€30–44", "en": "€30–44" },
+                { "code": "45_59", "nl": "€45–59", "en": "€45–59" }, { "code": "60_79", "nl": "€60–79", "en": "€60–79" },
+                { "code": "80plus", "nl": "€80+", "en": "€80+" }, { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know" }
+              ]
+            },
+            {
+              "id": "Q14b", "type": "single_select", "show_if": { "q": "Q11", "row": "training", "not_in": ["not_used", "wanted"] },
+              "text": { "nl": "Trainingsset (shirt, broek)", "en": "Training set (shirt, shorts)" },
+              "options": [
+                { "code": "lt20", "nl": "< €20", "en": "< €20" }, { "code": "20_29", "nl": "€20–29", "en": "€20–29" },
+                { "code": "30_44", "nl": "€30–44", "en": "€30–44" }, { "code": "45plus", "nl": "€45+", "en": "€45+" },
+                { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know" }
+              ]
+            },
+            {
+              "id": "Q14c", "type": "single_select", "show_if": { "q": "Q11", "row": "tracksuit", "not_in": ["not_used", "wanted"] },
+              "text": { "nl": "Trainingspak / wandelpak", "en": "Tracksuit" },
+              "options": [
+                { "code": "lt40", "nl": "< €40", "en": "< €40" }, { "code": "40_59", "nl": "€40–59", "en": "€40–59" },
+                { "code": "60_79", "nl": "€60–79", "en": "€60–79" }, { "code": "80plus", "nl": "€80+", "en": "€80+" },
+                { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know" }
+              ]
+            },
+            {
+              "id": "Q14d", "type": "single_select", "show_if": { "q": "Q11", "row": "winter_jacket", "not_in": ["not_used", "wanted"] },
+              "text": { "nl": "Winter- / bankjas", "en": "Winter / bench jacket" },
+              "options": [
+                { "code": "lt40", "nl": "< €40", "en": "< €40" }, { "code": "40_59", "nl": "€40–59", "en": "€40–59" },
+                { "code": "60_89", "nl": "€60–89", "en": "€60–89" }, { "code": "90plus", "nl": "€90+", "en": "€90+" },
+                { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "Q15", "type": "matrix_single", "required": true,
+          "text": { "nl": "Hoe wordt de bedrukking van wedstrijdshirts geregeld?", "en": "For match shirts, how is personalisation handled?" },
+          "rows": [
+            { "code": "crest", "nl": "Clublogo", "en": "Club crest" },
+            { "code": "sponsor", "nl": "Sponsorlogo('s)", "en": "Sponsor logo(s)" },
+            { "code": "number", "nl": "Rugnummer", "en": "Player number" },
+            { "code": "name", "nl": "Naam of initialen van de speler", "en": "Player name or initials" }
+          ],
+          "columns": [
+            { "code": "included", "nl": "Inbegrepen in de prijs", "en": "Included in price" },
+            { "code": "extra", "nl": "Extra aangerekend", "en": "Charged extra" },
+            { "code": "not_used", "nl": "Niet gebruikt", "en": "Not used" }
+          ]
+        },
+        {
+          "id": "Q16", "type": "multi_select", "required": true, "max_select": 2, "other_field": "Q16_other",
+          "text": { "nl": "Welk(e) merk(en) gebruikt je club momenteel voor teamkledij?", "en": "Which brand(s) does your club currently use for teamwear?" },
+          "options": [
+            { "code": "adidas", "nl": "adidas", "en": "adidas" }, { "code": "errea", "nl": "Errea", "en": "Errea" },
+            { "code": "erima", "nl": "Erima", "en": "Erima" }, { "code": "hummel", "nl": "Hummel", "en": "Hummel" },
+            { "code": "jako", "nl": "Jako", "en": "Jako" }, { "code": "joma", "nl": "Joma", "en": "Joma" },
+            { "code": "kappa", "nl": "Kappa", "en": "Kappa" }, { "code": "macron", "nl": "Macron", "en": "Macron" },
+            { "code": "masita", "nl": "Masita", "en": "Masita" }, { "code": "nike", "nl": "Nike", "en": "Nike" },
+            { "code": "patrick", "nl": "Patrick", "en": "Patrick" }, { "code": "puma", "nl": "Puma", "en": "Puma" },
+            { "code": "stanno", "nl": "Stanno", "en": "Stanno" }, { "code": "uhlsport", "nl": "Uhlsport", "en": "Uhlsport" },
+            { "code": "other", "nl": "Andere", "en": "Other" },
+            { "code": "no_fixed", "nl": "Geen vast merk", "en": "No fixed brand", "exclusive": true },
+            { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know", "exclusive": true }
+          ]
+        },
+        {
+          "id": "Q17", "type": "single_select", "required": true, "show_if": { "q": "Q16", "not_includes": "no_fixed" },
+          "text": { "nl": "Heeft je club een meerjarenovereenkomst met haar belangrijkste kledingleverancier?", "en": "Does your club have a multi-year agreement with its main teamwear supplier?" },
+          "options": [
+            { "code": "ends_2027", "nl": "Ja, loopt af na het seizoen 2026–2027", "en": "Yes, ending after the 2026–27 season" },
+            { "code": "ends_2028", "nl": "Ja, loopt af na het seizoen 2027–2028", "en": "Yes, ending after the 2027–28 season" },
+            { "code": "ends_2029_later", "nl": "Ja, loopt af in 2028–2029 of later", "en": "Yes, ending in 2028–29 or later" },
+            { "code": "none", "nl": "Geen vaste overeenkomst", "en": "No fixed agreement" },
+            { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know" }
+          ]
+        },
+        {
+          "id": "Q18", "type": "scale_1_5", "required": true, "show_if": { "q": "Q16", "not_includes": "no_fixed" },
+          "text": { "nl": "Hoe tevreden is je club globaal over de huidige kledingleverancier?", "en": "Overall, how satisfied is your club with its current teamwear supplier?" },
+          "labels": { "1": { "nl": "Zeer ontevreden", "en": "Very dissatisfied" }, "5": { "nl": "Zeer tevreden", "en": "Very satisfied" } }
+        },
+        {
+          "id": "Q19", "type": "multi_select", "required": true, "max_select": 3, "other_field": "Q19_other",
+          "show_if": { "q": "Q16", "not_includes": "no_fixed" },
+          "text": { "nl": "Wat waren de belangrijkste redenen om voor de huidige leverancier te kiezen?", "en": "What were the main reasons for choosing your current supplier?" },
+          "options": [
+            { "code": "price", "nl": "Prijs", "en": "Price" },
+            { "code": "quality", "nl": "Kwaliteit", "en": "Product quality" },
+            { "code": "brand_image", "nl": "Merkimago", "en": "Brand image" },
+            { "code": "relationship", "nl": "Jarenlange samenwerking", "en": "Long-standing relationship" },
+            { "code": "sponsorship_deal", "nl": "Sponsor- of kortingsovereenkomst", "en": "Sponsorship or discount agreement" },
+            { "code": "reliable_delivery", "nl": "Betrouwbare levering", "en": "Reliable delivery" },
+            { "code": "local_service", "nl": "Lokale service of vast aanspreekpunt", "en": "Local service or contact person" },
+            { "code": "webshop", "nl": "Webshop voor spelers/ouders", "en": "Webshop for players/parents" },
+            { "code": "range", "nl": "Productaanbod", "en": "Product range" },
+            { "code": "continuity", "nl": "Zelfde producten meerdere seizoenen beschikbaar", "en": "Same products available over several seasons" },
+            { "code": "recommendation", "nl": "Aanbevolen door een andere club", "en": "Recommended by another club" },
+            { "code": "other", "nl": "Andere", "en": "Other" }
+          ]
+        },
+        {
+          "id": "Q20", "type": "matrix_single", "required": true,
+          "text": { "nl": "Hoe vaak heeft je club de voorbije twee seizoenen het volgende meegemaakt?", "en": "In the last two seasons, how often has your club experienced the following?" },
+          "rows": [
+            { "code": "a_late_delivery", "nl": "Laattijdige of vertraagde leveringen", "en": "Late or delayed deliveries" },
+            { "code": "b_out_of_stock", "nl": "Items of maten niet op voorraad wanneer nodig", "en": "Items or sizes out of stock when needed" },
+            { "code": "c_high_moq", "nl": "Minimale bestelhoeveelheden hoger dan nodig", "en": "Minimum order quantities higher than needed" },
+            { "code": "d_hard_reorder", "nl": "Moeilijk om kleine aantallen of losse stuks bij te bestellen", "en": "Difficulty reordering small quantities or single items" },
+            { "code": "e_leftover_stock", "nl": "Overschotten of onverkochte maten", "en": "Leftover stock or unsold sizes" },
+            { "code": "f_prefinancing", "nl": "Club betaalt voorraad vóór spelers/ouders de club betalen", "en": "Club paying for stock before players/parents pay the club" },
+            { "code": "g_discontinued", "nl": "Items uit collectie vóór het einde van de kledijcyclus", "en": "Items discontinued before the end of the kit cycle" },
+            { "code": "h_limited_design", "nl": "Weinig inspraak in het ontwerp", "en": "Limited options to influence the design" },
+            { "code": "i_quality", "nl": "Kwaliteitsproblemen (pasvorm, duurzaamheid, bedrukking)", "en": "Quality problems (fit, durability, printing)" },
+            { "code": "j_print_errors", "nl": "Fouten in de bedrukking (namen, nummers, logo's)", "en": "Errors in personalisation (names, numbers, logos)" },
+            { "code": "k_service", "nl": "Trage of weinig behulpzame klantendienst", "en": "Slow or unhelpful customer service" }
+          ],
+          "columns": [
+            { "code": "never", "nl": "Nooit", "en": "Never" },
+            { "code": "occasionally", "nl": "Soms", "en": "Occasionally" },
+            { "code": "often", "nl": "Vaak", "en": "Often" },
+            { "code": "na", "nl": "Niet van toepassing", "en": "Not applicable" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "title": { "nl": "Toekomstige noden", "en": "Future needs" },
+      "questions": [
+        {
+          "id": "Q21", "type": "matrix_scale_1_5", "required": true, "randomise_rows": true,
+          "text": { "nl": "Hoe belangrijk zijn de volgende elementen bij de keuze van een kledingleverancier?", "en": "How important are the following when your club chooses a teamwear supplier?" },
+          "help": { "nl": "1 = niet belangrijk · 5 = zeer belangrijk", "en": "1 = not important · 5 = very important" },
+          "rows": [
+            { "code": "a_price", "nl": "Prijs", "en": "Price" },
+            { "code": "b_quality", "nl": "Kwaliteit en duurzaamheid", "en": "Product quality and durability" },
+            { "code": "c_short_delivery", "nl": "Korte levertermijn", "en": "Short delivery time" },
+            { "code": "d_reliable_dates", "nl": "Betrouwbare leverdata", "en": "Reliable delivery dates" },
+            { "code": "e_reorder_single", "nl": "Op elk moment losse stuks of maten bijbestellen", "en": "Reordering single items or sizes at any time" },
+            { "code": "f_low_moq", "nl": "Lage of geen minimale bestelhoeveelheid", "en": "Low or no minimum order quantity" },
+            { "code": "g_no_stock", "nl": "Club hoeft zelf geen voorraad aan te houden", "en": "Club does not need to hold stock" },
+            { "code": "h_custom_design", "nl": "Eigen ontwerp in plaats van een catalogusmodel", "en": "Own custom design rather than a catalogue template" },
+            { "code": "i_personalisation", "nl": "Bedrukking (namen, nummers, logo's)", "en": "Personalisation (names, numbers, logos)" },
+            { "code": "j_online_ordering", "nl": "Spelers/ouders kunnen rechtstreeks online bestellen", "en": "Players/parents can order online directly" },
+            { "code": "k_continuity", "nl": "Zelfde producten meerdere seizoenen beschikbaar", "en": "Same products available over several seasons" },
+            { "code": "l_local_service", "nl": "Persoonlijk contact of lokale service", "en": "Personal contact or local service" },
+            { "code": "m_known_brand", "nl": "Bekend merk", "en": "Well-known brand" }
+          ]
+        },
+        {
+          "id": "Q22", "type": "single_select", "required": true,
+          "text": { "nl": "Hoe open zou je club staan om de komende 12 maanden een andere leverancier te testen voor een deel van de teamkledij?", "en": "How open would your club be to testing a different supplier for part of its teamwear in the next 12 months?" },
+          "options": [
+            { "code": "not_open", "nl": "Niet open", "en": "Not open" },
+            { "code": "somewhat", "nl": "Enigszins open", "en": "Somewhat open" },
+            { "code": "open", "nl": "Open", "en": "Open" },
+            { "code": "very_open", "nl": "Zeer open", "en": "Very open" },
+            { "code": "contract_blocked", "nl": "Niet mogelijk door een lopende overeenkomst", "en": "Not possible because of an existing agreement" },
+            { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know" }
+          ]
+        },
+        {
+          "id": "Q23", "type": "multi_select", "required": false, "max_select": 3, "options_from": "products",
+          "exclude_products": ["socks"],
+          "extra_options": [ { "code": "dont_know", "nl": "Weet ik nog niet", "en": "Don't know yet", "exclusive": true } ],
+          "show_if": { "q": "Q22", "in": ["somewhat", "open", "very_open"] },
+          "text": { "nl": "Welke producten zou je club het eerst testen?", "en": "Which products would your club be most likely to test first?" }
+        },
+        {
+          "id": "Q24", "type": "single_select", "required": false,
+          "show_if": { "q": "Q22", "in": ["somewhat", "open", "very_open"] },
+          "text": { "nl": "Hoeveel spelers en stafleden zou een eerste test ongeveer kunnen omvatten?", "en": "Roughly how many players and staff could a first test cover?" },
+          "options": [
+            { "code": "lt25", "nl": "Minder dan 25", "en": "Fewer than 25", "midpoint": 15 },
+            { "code": "25_49", "nl": "25–49", "en": "25–49", "midpoint": 37 },
+            { "code": "50_99", "nl": "50–99", "en": "50–99", "midpoint": 75 },
+            { "code": "100_249", "nl": "100–249", "en": "100–249", "midpoint": 175 },
+            { "code": "250plus", "nl": "250 of meer", "en": "250 or more", "midpoint": 300 },
+            { "code": "dont_know", "nl": "Weet ik niet", "en": "Don't know" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "title": { "nl": "Optionele opvolging", "en": "Optional follow-up" },
+      "help": { "nl": "Dit deel is optioneel. Je kunt de enquête ook zonder dit deel indienen.", "en": "This section is optional. You can submit the survey without it." },
+      "questions": [
+        {
+          "id": "C01", "type": "multi_select", "required": false,
+          "text": { "nl": "Zou je club interesse hebben in het volgende?", "en": "Would your club be interested in any of the following?" },
+          "options": [
+            { "code": "interview", "nl": "Een kort opvolgingsgesprek (ongeveer 20 minuten)", "en": "A short follow-up interview (about 20 minutes)" },
+            { "code": "product_test", "nl": "Deelname aan een toekomstige producttest", "en": "Taking part in a future product test" },
+            { "code": "summary", "nl": "Een samenvatting van de resultaten ontvangen", "en": "Receiving a summary of the findings" },
+            { "code": "none", "nl": "Geen van deze", "en": "None of these", "exclusive": true }
+          ]
+        },
+        {
+          "id": "C03", "type": "short_text", "required": false, "contact_data": true,
+          "show_if": { "q": "C01", "any_except": ["none"] },
+          "text": { "nl": "Contactpersoon", "en": "Contact person" }
+        },
+        {
+          "id": "C04", "type": "email", "required_if": { "q": "C01", "any_except": ["none"] }, "contact_data": true,
+          "show_if": { "q": "C01", "any_except": ["none"] },
+          "text": { "nl": "E-mailadres", "en": "Email address" }
+        },
+        {
+          "id": "C05", "type": "checkbox", "required_if": { "q": "C04", "filled": true }, "contact_data": true,
+          "show_if": { "q": "C01", "any_except": ["none"] },
+          "text": {
+            "nl": "Ik ga ermee akkoord dat International Football Hub mij contacteert over de hierboven aangeduide opties. Mijn gegevens worden niet gedeeld met derden en ik kan mijn toestemming op elk moment intrekken.",
+            "en": "I agree that International Football Hub may contact me about the options I selected above. My details will not be shared with third parties and I can withdraw at any time."
+          }
+        }
+      ]
+    }
+  ],
+  "derived_fields": {
+    "region": "from Q02 option.region",
+    "size_band": "from Q03 option.size_band",
+    "club_structure": "youth_only if no Q04 option with senior=true is selected, else multi_section",
+    "spend_midpoint": "from Q13 option.midpoint (empty if dont_know)",
+    "pilot_midpoint": "from Q24 option.midpoint (empty if dont_know or not shown)"
+  }
+}
