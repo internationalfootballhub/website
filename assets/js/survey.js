@@ -67,6 +67,7 @@ var APPS_SCRIPT_URL = '';
     clubName: '',
     view: 'loading', // loading | gate | survey | done | already_done | error
     sectionIndex: 0,
+    maxSectionReached: 0,
     answers: {},
     meta: {}
   };
@@ -97,7 +98,7 @@ var APPS_SCRIPT_URL = '';
   function saveLocal() {
     try {
       localStorage.setItem(lsKey(), JSON.stringify({
-        answers: STATE.answers, meta: STATE.meta, sectionIndex: STATE.sectionIndex
+        answers: STATE.answers, meta: STATE.meta, sectionIndex: STATE.sectionIndex, maxSectionReached: STATE.maxSectionReached
       }));
     } catch (e) { /* ignore storage errors (private mode, quota, ...) */ }
   }
@@ -109,6 +110,7 @@ var APPS_SCRIPT_URL = '';
       STATE.answers = data.answers || {};
       STATE.meta = data.meta || {};
       STATE.sectionIndex = data.sectionIndex || 0;
+      STATE.maxSectionReached = data.maxSectionReached || STATE.sectionIndex;
     } catch (e) { /* ignore */ }
   }
   function clearLocal() {
@@ -407,10 +409,17 @@ var APPS_SCRIPT_URL = '';
     var isLast = STATE.sectionIndex === total - 1;
 
     var html = '';
-    html += '<div class="survey-progress">' +
-      '<div class="survey-progress__track"><div class="survey-progress__fill" style="width:' + Math.round(((STATE.sectionIndex + 1) / total) * 100) + '%"></div></div>' +
-      '<div class="survey-progress__label">' + escapeHtml(t('progress')(STATE.sectionIndex + 1, total)) + '</div>' +
-      '</div>';
+    html += '<div class="survey-stepper" role="tablist" aria-label="' + escapeHtml(t('progress')(STATE.sectionIndex + 1, total)) + '">';
+    for (var i = 0; i < total; i++) {
+      var reached = i <= STATE.maxSectionReached;
+      var isCurrent = i === STATE.sectionIndex;
+      var cls = 'survey-step' + (isCurrent ? ' is-current' : '') + (reached && !isCurrent ? ' is-reached' : '');
+      html += '<button type="button" class="' + cls + '" data-step="' + i + '"' + (reached ? '' : ' disabled') +
+        ' role="tab" aria-selected="' + (isCurrent ? 'true' : 'false') + '" aria-label="' + escapeHtml(tt(CONFIG.sections[i].title)) + '">' + (i + 1) + '</button>';
+      if (i < total - 1) html += '<span class="survey-step__line' + (i < STATE.maxSectionReached ? ' is-reached' : '') + '"></span>';
+    }
+    html += '</div>';
+    html += '<div class="survey-progress__label">' + escapeHtml(t('progress')(STATE.sectionIndex + 1, total)) + '</div>';
 
     html += '<form class="survey-section" id="surveyForm" novalidate>';
     html += '<h2>' + escapeHtml(tt(section.title)) + '</h2>';
@@ -513,12 +522,23 @@ var APPS_SCRIPT_URL = '';
       window.scrollTo(0, 0);
     });
 
+    qsa('.survey-step', document).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.disabled) return;
+        STATE.sectionIndex = parseInt(btn.getAttribute('data-step'), 10);
+        saveLocal();
+        renderSurveyView();
+        window.scrollTo(0, 0);
+      });
+    });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!validateCurrentSection()) return;
       var total = CONFIG.sections.length;
       if (STATE.sectionIndex < total - 1) {
         STATE.sectionIndex++;
+        STATE.maxSectionReached = Math.max(STATE.maxSectionReached, STATE.sectionIndex);
         saveLocal();
         renderSurveyView();
         window.scrollTo(0, 0);
