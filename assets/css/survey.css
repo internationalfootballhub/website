@@ -198,14 +198,15 @@
 .survey-scale__num { display: block; font-family: var(--font-head); font-weight: 700; font-size: 18px; }
 .survey-scale__labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--color-muted); margin-top: 6px; }
 
-/* ---------- matrix: same <table> markup, restyled per breakpoint ---------- */
+/* ---------- matrix: plain <div>s (role=table/row/cell), not a real
+   <table> — overriding display on real table/tr/td elements makes
+   browsers' anonymous-table-box generation disagree with the painted
+   flex layout, so clicks land on the wrong row. Divs don't have that. ---------- */
 .survey-matrix { margin-top: 10px; }
-.survey-matrix table { width: 100%; border-collapse: collapse; }
 
 /* mobile (default): each row becomes a card, columns become pills that wrap */
-.survey-matrix thead { display: none; }
-.survey-matrix tbody { display: block; }
-.survey-matrix tr {
+.survey-matrix__row.survey-matrix__row--head { display: none; }
+.survey-matrix__row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -215,10 +216,10 @@
   padding: 12px;
   margin-bottom: 12px;
 }
-.survey-matrix tr:last-child { margin-bottom: 0; }
-.survey-matrix td { border: none; padding: 0; }
-.survey-matrix td.survey-matrix-row__label { flex: 1 0 100%; font-weight: 600; font-size: 14px; margin-bottom: 4px; }
-.survey-matrix td.survey-matrix-col label {
+.survey-matrix__row:last-child { margin-bottom: 0; }
+.survey-matrix__rowlabel { flex: 1 0 100%; font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.survey-matrix__cell { position: relative; }
+.survey-matrix__cell label {
   display: block;
   border: 1px solid var(--color-line);
   border-radius: 999px;
@@ -226,15 +227,15 @@
   font-size: 13px;
   cursor: pointer;
 }
-.survey-matrix td.survey-matrix-col input[type="radio"] { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.survey-matrix td.survey-matrix-col.is-checked label { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-white); }
+.survey-matrix__cell input[type="radio"] { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.survey-matrix__cell.is-checked label { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-white); }
 
-/* desktop: a real table */
+/* desktop: table-like via display:table on divs */
 @media (min-width: 760px) {
-  .survey-matrix thead { display: table-header-group; }
-  .survey-matrix tbody { display: table-row-group; }
-  .survey-matrix tr { display: table-row; border: none; padding: 0; margin: 0; }
-  .survey-matrix th, .survey-matrix td {
+  .survey-matrix { display: table; width: 100%; border-collapse: collapse; }
+  .survey-matrix__row--head { display: table-row; }
+  .survey-matrix__row { display: table-row; border: none; padding: 0; margin: 0; }
+  .survey-matrix__headcell, .survey-matrix__rowlabel, .survey-matrix__cell {
     display: table-cell;
     border-bottom: 1px solid var(--color-line);
     padding: 10px 8px;
@@ -242,12 +243,12 @@
     font-size: 13px;
     vertical-align: middle;
   }
-  .survey-matrix td.survey-matrix-row__label { text-align: left; font-weight: 600; width: 34%; margin: 0; }
-  .survey-matrix thead th { font-family: var(--font-head); font-weight: 700; color: var(--color-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
-  .survey-matrix td.survey-matrix-col { cursor: pointer; }
-  .survey-matrix td.survey-matrix-col label { border: none; border-radius: 0; padding: 4px; }
-  .survey-matrix td.survey-matrix-col.is-checked { background: var(--color-accent-light); }
-  .survey-matrix td.survey-matrix-col.is-checked label { background: transparent; color: inherit; }
+  .survey-matrix__rowlabel { text-align: left; font-weight: 600; width: 34%; margin: 0; }
+  .survey-matrix__headcell { font-family: var(--font-head); font-weight: 700; color: var(--color-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .survey-matrix__cell { cursor: pointer; }
+  .survey-matrix__cell label { border: none; border-radius: 0; padding: 4px; }
+  .survey-matrix__cell.is-checked { background: var(--color-accent-light); }
+  .survey-matrix__cell.is-checked label { background: transparent; color: inherit; }
 }
 
 /* ---------- nav buttons ---------- */

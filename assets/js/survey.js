@@ -316,6 +316,11 @@ var APPS_SCRIPT_URL = '';
     return order.map(function (code) { return byCode[code]; }).filter(Boolean);
   }
 
+  // Deliberately built from plain <div>s, not a real <table>. Overriding
+  // display on <table>/<tr>/<td> (e.g. table->flex for the mobile card
+  // layout) makes browsers' anonymous-table-box generation and the painted
+  // layout disagree about where things are — elementFromPoint/clicks land
+  // on the wrong row. Divs with role="table" etc. don't have that quirk.
   function renderMatrix(q, idPrefix, isScale) {
     var rows = isScale ? matrixRowOrder(q) : questionRows(q);
     var cols = isScale ? [1, 2, 3, 4, 5] : q.columns;
@@ -323,26 +328,27 @@ var APPS_SCRIPT_URL = '';
 
     var html = '<fieldset><legend class="survey-question__label">' + escapeHtml(tt(q.text)) + (isRequired(q) ? ' *' : '') + '</legend>';
     if (q.help) html += '<p class="survey-question__help">' + escapeHtml(tt(q.help)) + '</p>';
-    html += '<div class="survey-matrix" data-qid="' + q.id + '" data-kind="' + (isScale ? 'matrix_scale_1_5' : 'matrix_single') + '">';
-    html += '<table><thead><tr><th></th>';
-    cols.forEach(function (c) { html += '<th>' + (isScale ? c : escapeHtml(tt(c))) + '</th>'; });
-    html += '</tr></thead><tbody>';
+    html += '<div class="survey-matrix" data-qid="' + q.id + '" data-kind="' + (isScale ? 'matrix_scale_1_5' : 'matrix_single') + '" role="table">';
+
+    html += '<div class="survey-matrix__row survey-matrix__row--head" role="row"><div class="survey-matrix__headcell" role="columnheader"></div>';
+    cols.forEach(function (c) { html += '<div class="survey-matrix__headcell" role="columnheader">' + (isScale ? c : escapeHtml(tt(c))) + '</div>'; });
+    html += '</div>';
 
     rows.forEach(function (row, rIdx) {
       var rowAns = answers[row.code];
-      html += '<tr><td class="survey-matrix-row__label">' + escapeHtml(tt(row)) + '</td>';
+      html += '<div class="survey-matrix__row" role="row"><div class="survey-matrix__rowlabel" role="rowheader">' + escapeHtml(tt(row)) + '</div>';
       cols.forEach(function (c, cIdx) {
-        var colCode = isScale ? c : c.code;
+        var colCode = isScale ? String(c) : c.code;
         var checked = rowAns === colCode;
         var inputId = idPrefix + q.id + '_' + rIdx + '_' + cIdx;
-        html += '<td class="survey-matrix-col' + (checked ? ' is-checked' : '') + '">' +
+        html += '<div class="survey-matrix__cell' + (checked ? ' is-checked' : '') + '" role="cell">' +
           '<label for="' + inputId + '">' +
           '<input type="radio" id="' + inputId + '" name="' + idPrefix + q.id + '_' + row.code + '" value="' + escapeHtml(colCode) + '" data-qid="' + q.id + '" data-kind="matrix" data-row="' + escapeHtml(row.code) + '"' + (checked ? ' checked' : '') + '>' +
-          '<span>' + (isScale ? colCode : escapeHtml(tt(c))) + '</span></label></td>';
+          '<span>' + (isScale ? colCode : escapeHtml(tt(c))) + '</span></label></div>';
       });
-      html += '</tr>';
+      html += '</div>';
     });
-    html += '</tbody></table></div>';
+    html += '</div>';
     html += renderErrorSlot();
     html += '</fieldset>';
     return html;
