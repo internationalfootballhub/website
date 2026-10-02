@@ -1,0 +1,324 @@
+/* ============================================================
+   IFH Teamwear Survey — standalone, data-driven survey UI
+   Reuses the main site's design tokens (assets/css/style.css).
+   ============================================================ */
+
+.survey-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-off);
+}
+
+.survey-header {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-line);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.survey-header__brand { display: flex; align-items: center; gap: 10px; }
+.survey-header__brand img { height: 32px; display: block; }
+.survey-header__brand span {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-black);
+}
+.survey-lang {
+  display: flex;
+  gap: 4px;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding: 3px;
+}
+.survey-lang button {
+  border: none;
+  background: transparent;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--color-muted);
+}
+.survey-lang button.is-active { background: var(--color-accent); color: var(--color-white); }
+
+.survey-main {
+  flex: 1;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* ---------- stepper (clickable section numbers) ---------- */
+.survey-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.survey-step {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-line);
+  background: var(--color-white);
+  color: var(--color-muted);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.survey-step.is-reached {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  cursor: pointer;
+}
+.survey-step.is-reached:hover { background: var(--color-accent-light); }
+.survey-step.is-current {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-white);
+  cursor: default;
+}
+.survey-step__line {
+  flex: 1 1 auto;
+  height: 1.5px;
+  background: var(--color-line);
+  min-width: 8px;
+}
+.survey-step__line.is-reached { background: var(--color-accent); }
+
+.survey-progress__label {
+  margin-top: 10px;
+  margin-bottom: 28px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-muted);
+  font-family: var(--font-head);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ---------- intro / gate ---------- */
+.survey-intro h1 {
+  font-size: clamp(26px, 5vw, 36px);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.survey-intro .survey-subtitle { color: var(--color-muted); font-size: 16px; margin-bottom: 20px; }
+.survey-intro p { font-size: 15px; line-height: 1.6; }
+
+.survey-gate {
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  padding: 28px 24px;
+  margin-top: 24px;
+}
+.survey-gate label {
+  display: block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.survey-gate input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: var(--font-body);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.survey-gate input[type="text"]:focus { outline: 2px solid var(--color-accent); outline-offset: 1px; border-color: var(--color-accent); }
+.survey-gate .survey-error { color: #b3261e; font-size: 14px; margin-top: 10px; }
+
+/* ---------- section card ---------- */
+.survey-section { background: var(--color-white); border: 1px solid var(--color-line); border-radius: 8px; padding: 24px 20px; }
+.survey-section h2 {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.survey-section__help { color: var(--color-muted); font-size: 13px; margin-bottom: 18px; }
+
+.survey-question { margin-bottom: 28px; }
+.survey-question:last-child { margin-bottom: 0; }
+.survey-question legend,
+.survey-question__label {
+  display: block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-black);
+  margin-bottom: 4px;
+  padding: 0;
+}
+.survey-question__help { font-size: 13px; color: var(--color-muted); margin-bottom: 10px; }
+.survey-question fieldset { border: none; margin: 0; padding: 0; }
+
+.survey-error-text { color: #b3261e; font-size: 13px; margin-top: 8px; display: none; }
+.survey-question.has-error .survey-error-text { display: block; }
+.survey-question.has-error .survey-question__label { color: #b3261e; }
+
+/* ---------- text / email inputs ---------- */
+.survey-input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: var(--font-body);
+  margin-top: 8px;
+}
+.survey-input:focus { outline: 2px solid var(--color-accent); outline-offset: 1px; border-color: var(--color-accent); }
+
+/* ---------- option lists (single/multi select) ---------- */
+.survey-options { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.survey-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  padding: 11px 13px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.survey-option:hover { border-color: var(--color-accent); }
+.survey-option input { margin-top: 3px; flex-shrink: 0; accent-color: var(--color-accent); width: 18px; height: 18px; }
+.survey-option span { font-size: 15px; line-height: 1.4; }
+.survey-option.is-checked { border-color: var(--color-accent); background: var(--color-accent-light); }
+
+.survey-option-dropdown {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 8px;
+  background: var(--color-white);
+}
+
+.survey-other-field { margin-top: 8px; margin-left: 28px; }
+
+/* ---------- scale 1-5 ---------- */
+.survey-scale { display: flex; gap: 8px; margin-top: 8px; }
+.survey-scale__opt {
+  flex: 1;
+  text-align: center;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  padding: 12px 4px 8px;
+  cursor: pointer;
+}
+.survey-scale__opt input { accent-color: var(--color-accent); }
+.survey-scale__opt.is-checked { border-color: var(--color-accent); background: var(--color-accent-light); }
+.survey-scale__num { display: block; font-family: var(--font-head); font-weight: 700; font-size: 18px; }
+.survey-scale__labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--color-muted); margin-top: 6px; }
+
+/* ---------- matrix: plain <div>s (role=table/row/cell), not a real
+   <table> — overriding display on real table/tr/td elements makes
+   browsers' anonymous-table-box generation disagree with the painted
+   flex layout, so clicks land on the wrong row. Divs don't have that. ---------- */
+.survey-matrix { margin-top: 10px; }
+
+/* mobile (default): each row becomes a card, columns become pills that wrap */
+.survey-matrix__row.survey-matrix__row--head { display: none; }
+.survey-matrix__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.survey-matrix__row:last-child { margin-bottom: 0; }
+.survey-matrix__rowlabel { flex: 1 0 100%; font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.survey-matrix__cell { position: relative; }
+.survey-matrix__cell label {
+  display: block;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.survey-matrix__cell input[type="radio"] { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.survey-matrix__cell.is-checked label { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-white); }
+
+/* desktop: table-like via display:table on divs */
+@media (min-width: 760px) {
+  .survey-matrix { display: table; width: 100%; border-collapse: collapse; }
+  .survey-matrix__row--head { display: table-row; }
+  .survey-matrix__row { display: table-row; border: none; padding: 0; margin: 0; }
+  .survey-matrix__headcell, .survey-matrix__rowlabel, .survey-matrix__cell {
+    display: table-cell;
+    border-bottom: 1px solid var(--color-line);
+    padding: 10px 8px;
+    text-align: center;
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  .survey-matrix__rowlabel { text-align: left; font-weight: 600; width: 34%; margin: 0; }
+  .survey-matrix__headcell { font-family: var(--font-head); font-weight: 700; color: var(--color-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .survey-matrix__cell { cursor: pointer; }
+  .survey-matrix__cell label { border: none; border-radius: 0; padding: 4px; }
+  .survey-matrix__cell.is-checked { background: var(--color-accent-light); }
+  .survey-matrix__cell.is-checked label { background: transparent; color: inherit; }
+}
+
+/* ---------- nav buttons ---------- */
+.survey-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+.survey-nav .btn { font-family: var(--font-head); font-weight: 700; letter-spacing: 0.3px; border-radius: 6px; padding: 13px 24px; border: none; cursor: pointer; font-size: 15px; }
+.survey-nav .btn--primary { background: var(--color-accent); color: var(--color-white); margin-left: auto; }
+.survey-nav .btn--primary:hover { background: var(--color-accent-dark); }
+.survey-nav .btn--ghost { background: transparent; color: var(--color-text); border: 1px solid var(--color-line); }
+.survey-nav .btn--ghost:hover { border-color: var(--color-black); }
+.survey-nav .btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+/* ---------- end states ---------- */
+.survey-end { text-align: center; padding: 40px 20px; }
+.survey-end h2 { font-size: 24px; margin-bottom: 10px; }
+.survey-end p { color: var(--color-muted); }
+
+/* ---------- footer / privacy ---------- */
+.survey-footer {
+  border-top: 1px solid var(--color-line);
+  padding: 20px;
+  text-align: center;
+}
+.survey-footer p { font-size: 12px; color: var(--color-muted); max-width: 640px; margin: 0 auto 6px; line-height: 1.5; }
+
+/* ---------- optional-section note ---------- */
+.survey-optional-note {
+  background: var(--color-accent-light);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--color-accent-dark);
+  margin-bottom: 18px;
+}
+
+.survey-chip-count {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-top: 6px;
+}
+
+[hidden] { display: none !important; }
