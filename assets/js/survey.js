@@ -4,7 +4,7 @@
 //
 // TODO (deploy step): set APPS_SCRIPT_URL below to the deployed Apps Script
 // web app URL once it exists (see apps-script/README.md).
-var APPS_SCRIPT_URL = '';
+var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwGtS8zk_YUSOLC5n6FYcublnFvRLM4udZoalxpmbkqT84zzXHfd1ljq81X6mcX3aAM/exec';
 
 (function () {
   'use strict';
@@ -629,17 +629,32 @@ var APPS_SCRIPT_URL = '';
     });
   }
 
+  // Apps Script's web app redirect occasionally serves an HTML
+  // warm-up/interstitial page instead of JSON on the first request after
+  // the script container has been idle (or just redeployed). That's a
+  // transient server-side hiccup, not an invalid code or payload, so retry
+  // once before surfacing an error to the user.
+  function fetchJsonWithRetry_(options, attemptsLeft, cb) {
+    fetch(options.url, options.init).then(function (r) { return r.json(); }).then(cb).catch(function () {
+      if (attemptsLeft > 0) {
+        fetchJsonWithRetry_(options, attemptsLeft - 1, cb);
+      } else {
+        cb(options.fallback);
+      }
+    });
+  }
+
   function submitToBackend(payload, cb) {
-    fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
-    }).then(function (r) { return r.json(); }).then(cb).catch(function () { cb({ ok: false, networkError: true }); });
+    fetchJsonWithRetry_({
+      url: APPS_SCRIPT_URL,
+      init: { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) },
+      fallback: { ok: false, networkError: true }
+    }, 1, cb);
   }
 
   function validateCode(code, cb) {
     var url = APPS_SCRIPT_URL + (APPS_SCRIPT_URL.indexOf('?') === -1 ? '?' : '&') + 'action=validate&code=' + encodeURIComponent(code);
-    fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function () { cb({ valid: false, networkError: true }); });
+    fetchJsonWithRetry_({ url: url, init: undefined, fallback: { valid: false, networkError: true } }, 1, cb);
   }
 
   function showToast(msg) {
